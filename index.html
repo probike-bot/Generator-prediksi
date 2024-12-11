@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Generator Prediksi</title>
-        <link rel="stylesheet" href="style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    </head>
-    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Prediksi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
 <body>
-    <div class="container">
-        <h1></h1>
-        <p><b style="color: #ffffff; font-size: 18px;">MASUKAN HASIL RESULT YANG KELUAR PADA 7 HARI SEBELUM NYA : </b></p>
+    <div class="container animated-container">
+        <h1 class="animated-title">PINTU TOGEL</h1>
+        <p class="subtitle animated-subtitle">Masukkan hasil result yang keluar pada 7 hari sebelumnya:</p>
         
         <form id="number-form">
-            <label for="pair1">RESULT H-1:</label>
-            <input type="text" id="pair1" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <label for="pair2">RESULT H-2:</label>
-            <input type="text" id="pair2" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <label for="pair3">RESULT H-3:</label>
-            <input type="text" id="pair3" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <label for="pair4">RESULT H-4:</label>
-            <input type="text" id="pair4" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <label for="pair5">RESULT H-5:</label>
-            <input type="text" id="pair5" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <label for="pair6">RESULT H-6:</label>
-            <input type="text" id="pair6" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <label for="pair7">RESULT H-7:</label>
-            <input type="text" id="pair7" maxlength="4" placeholder="Masukan 4 angka disini" required>
-            <button type="submit">Generate</button>
-            <!-- Tombol Reset -->
-    <button type="button" id="reset-button">Reset</button>
+            <div class="input-group">
+                <label for="pair1">RESULT H-1:</label>
+                <input type="text" id="pair1" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <div class="input-group">
+                <label for="pair2">RESULT H-2:</label>
+                <input type="text" id="pair2" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <div class="input-group">
+                <label for="pair3">RESULT H-3:</label>
+                <input type="text" id="pair3" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <div class="input-group">
+                <label for="pair4">RESULT H-4:</label>
+                <input type="text" id="pair4" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <div class="input-group">
+                <label for="pair5">RESULT H-5:</label>
+                <input type="text" id="pair5" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <div class="input-group">
+                <label for="pair6">RESULT H-6:</label>
+                <input type="text" id="pair6" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <div class="input-group">
+                <label for="pair7">RESULT H-7:</label>
+                <input type="text" id="pair7" maxlength="4" placeholder="Masukkan 4 angka" required>
+            </div>
+            <button type="submit" class="btn generate">Generate</button>
+            <button type="button" id="reset-button" class="btn reset">Reset</button>
         </form>
-        <div id="result">
+
+        <div id="result" class="result-title">
             <h2>Hasil Prediksi:</h2>
             <p id="predicted-numbers">Belum ada hasil</p>   
         </div>
 
         <div class="action-buttons">
-            <a href="https://rebrand.ly/angka_keramat" target="_blank">
-            <button id="register-button"><b>DAFTAR</b></button>
-            <button id="login-button"><b>LOGIN</b></button>
-        </a>
+            <a href="https://example.com/register" target="_blank" class="btn btn-yellow">DAFTAR</a>
+            <a href="https://example.com/login" target="_blank" class="btn btn-yellow">LOGIN</a>
         </div>
         
         <footer class="footer">
