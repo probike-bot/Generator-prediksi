@@ -1,0 +1,310 @@
+/* Reset */
+body, h1, p, label, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Latar belakang gradien */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('bg.jpg');
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover
+    
+}
+/* Membuat teks tebal */
+label {
+    font-weight: bold; 
+}
+
+
+h1 {
+    background-image: url('logo.png'); /* Ganti dengan nama file gambar Anda */
+    background-size: contain; /* Menyesuaikan ukuran gambar */
+    background-repeat: no-repeat; /* Jangan ulangi gambar */
+    background-position: center; /* Pusatkan gambar */
+    padding: 50px; /* Memberikan ruang untuk menampilkan gambar */
+}
+
+
+/* Container utama */
+.container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8); /* Warna latar belakang */
+    border-radius: 15px; /* Sudut membulat */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Bayangan */
+    padding: 20px; /* Padding dalam kontainer */
+    width: 100%; /* Lebar kontainer */
+    max-width: 350px; /* Maksimal lebar */
+    margin: 0px auto; /* Jarak atas (50px) dan posisi tengah */
+    color: #ffffff; /* Warna teks */
+}
+/* Judul */
+.container h1 {
+    font-size: 2rem;
+    margin-bottom: -10px;
+    color: #ff0000;
+}
+
+/* Deskripsi */
+.container p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Formulir */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Label */
+form label {
+    font-size: 1.2rem;
+    font-style: bold;
+    color: #fcfcfc;
+    text-align: center;
+}
+
+/* Input */
+form input {
+    padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+/* Fokus pada input */
+form input:focus {
+    border-color: #4e54c8;
+    outline: none;
+}
+
+/* Tombol */
+form button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #4e54c8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Tombol hover */
+form button:hover {
+    background: #8f94fb;
+}
+
+/* Bagian hasil */
+#result {
+    margin-top: 20px; /* Jarak dari elemen sebelumnya */
+    background: #ffffff;
+    padding: 10px; /* Ruang di dalam kolom */
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+    text-align: center; /* Rata tengah secara horizontal */
+    display: flex; /* Gunakan flexbox */
+    flex-direction: column; /* Susunan vertikal */
+    justify-content: center; /* Rata tengah secara vertikal */
+    align-items: center; /* Rata tengah secara horizontal */
+    min-height: 100px; /* Atur tinggi minimum kolom */
+}
+
+#result h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #4e54c8;
+}
+
+#predicted-numbers {
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #8f94fb;
+}
+/* Tombol Reset */
+#reset-button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #f44336;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Hover efek untuk tombol Reset */
+#reset-button:hover {
+    background: #e53935;
+}
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #ff0000;
+    opacity: 0.8;
+    background: transparent;
+    
+}
+
+.footer p {
+    margin: 10px 0;
+    color: #ffffff; /* Ganti dengan warna yang Anda inginkan */
+    font-style: bold;
+    font-size: large; 
+}
+
+/* Gaya untuk tombol di bawah kolom hasil prediksi */
+
+
+.action-buttons button {
+    background-color: #ffd000 !important;
+    color: #000000 !important;
+    border: 5px;
+    border-radius: 10px;
+    padding: 10px 200px !important; /* Perbesar tombol */
+    font-size: 1.2rem !important; /* Perbesar teks tombol */
+    margin: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+
+}
+
+.action-buttons button:hover {
+    background-color: #fbff00;
+    transform: scale(1.1); /* Efek hover untuk memperbesar tombol */
+}
+
+
+.action-buttons p {
+    font-size: 1.2rem; /* Ukuran teks */
+    color: #ffffff; /* Warna teks putih */
+    text-align: center; /* Pusatkan teks */
+    margin-bottom: 10px; /* Jarak antara teks dan tombol */
+}
+
+button {
+    width: 100%; /* Lebar penuh sesuai kontainer */
+    padding: 10px; /* Padding yang sama untuk semua tombol */
+    font-size: 1rem; /* Ukuran teks konsisten */
+    text-align: center; /* Teks rata tengah */
+    border-radius: 5px; /* Sudut membulat yang sama */
+}
+
+
+
+/* Media Queries untuk Mobile */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%; /* Gunakan lebar penuh untuk layar kecil */
+        padding: 10px;
+    }
+
+    form label {
+        font-size: 1rem; /* Perkecil ukuran font pada layar kecil */
+    }
+
+    form input {
+        font-size: 0.9rem; /* Sesuaikan ukuran input */
+        padding: 8px; /* Sesuaikan padding */
+    }
+
+    form button {
+        font-size: 0.9rem; /* Sesuaikan ukuran tombol */
+        padding: 8px 12px;
+    }
+
+    #result h2 {
+        font-size: 1.2rem; /* Perkecil ukuran font untuk hasil */
+    }
+
+    #predicted-numbers {
+        font-size: 1.2rem; /* Sesuaikan ukuran hasil prediksi */
+    }
+
+    .action-buttons {
+        display: flex; /* Aktifkan flexbox */
+        flex-direction: column; /* Susun tombol secara vertikal */
+        justify-content: center; /* Pusatkan secara vertikal */
+        align-items: center; /* Pusatkan secara horizontal */
+        gap: 10px; /* Tambahkan jarak antar tombol */
+    }
+    .action-buttons button {
+        background-color: #ffd700; /* Warna tombol */
+        color: #000; /* Warna teks */
+        border: none; /* Hapus border default */
+        border-radius: 5px; /* Sudut membulat */
+        cursor: pointer; /* Pointer saat hover */
+        padding: 12px 20px; /* Padding tombol */
+        text-align: center; /* Teks rata tengah */
+        font-size: 1rem; /* Ukuran teks */
+        transition: background 0.3s; /* Animasi hover */
+    }
+    .action-buttons button:hover {
+        background-color: #f0c000; /* Warna saat hover */
+    }
+    .footer p {
+        font-size: 0.8rem; /* Perkecil ukuran teks footer */
+    }
+}
+
+/* Media Queries untuk Desktop */
+@media (min-width: 769px) {
+    .container {
+        max-width: 500px; /* Lebarkan kontainer untuk desktop */
+    }
+
+    h1 {
+        padding: 70px; /* Tambahkan lebih banyak ruang untuk logo di desktop */
+    }
+
+    form label {
+        font-size: 1.2rem; /* Ukuran font lebih besar untuk layar besar */
+    }
+
+    form input {
+        font-size: 1rem;
+    }
+
+    form button {
+        font-size: 1rem;
+    }
+
+    #result h2 {
+        font-size: 1.5rem; /* Ukuran hasil lebih besar */
+    }
+
+    #predicted-numbers {
+        font-size: 2.5rem; /* Ukuran hasil prediksi lebih besar */
+    }
+
+    .action-buttons button {
+        font-size: 1rem; /* Sesuaikan tombol di bawah kolom hasil */
+        padding: 10px 15px;
+    }
+
+    .footer p {
+        font-size: 1rem; /* Perbesar teks footer untuk desktop */
+    }
+}
