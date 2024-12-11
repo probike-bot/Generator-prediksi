@@ -42,10 +42,10 @@ body {
 }
 
 .subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 20px;
     color: #ffffff;
-    animation: slideIn 1s ease-out;
+    animation: fadeInLogo 1s ease-out;
 }
 
 /* Form */
@@ -125,6 +125,29 @@ form {
     text-shadow: 0px 0px 10px #4d4c4c; /* Efek cahaya */
     animation: glowResult 1.5s infinite; /* Animasi glow */
     margin-top: -20px;
+}
+/* Gaya untuk logo */
+.logo {
+    text-align: center;
+    margin-bottom: 15px; /* Jarak antara logo dan elemen berikutnya */
+}
+
+.animated-logo {
+    max-width: 100%; /* Agar gambar responsif */
+    height: auto; /* Pertahankan rasio gambar */
+    animation: fadeInLogo 1.5s ease-in-out; /* Animasi untuk logo */
+}
+
+/* Animasi untuk logo */
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 
