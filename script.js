@@ -14,8 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Prevent non-numeric characters in input fields and move focus
     inputs.forEach((input, index) => {
-        // Hapus autocomplete/pilihan history
-        input.setAttribute('autocomplete', 'off');
+        input.setAttribute('autocomplete', 'off'); // Disable autocomplete
 
         input.addEventListener('input', () => {
             input.value = input.value.replace(/[^0-9]/g, ''); // Hanya angka
@@ -45,55 +44,73 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Gabungkan semua angka menjadi string untuk hashing
-        const concatenatedNumbers = inputValues.join('');
+        // Gabungkan semua angka menjadi array
+        const allNumbers = inputValues.flatMap(num => num.split('').map(Number));
 
-        // Hasil prediksi dengan logika konsisten
-        const predictedNumber = generateConsistentNumber(concatenatedNumbers);
+        // Hasil prediksi konsisten tanpa angka ganda
+        const predictedNumber = generateConsistentPredictedNumber(allNumbers);
 
         // Tampilkan hasil
         resultElement.textContent = predictedNumber;
     });
 
-    // Fungsi untuk menghasilkan angka konsisten berbasis hashing
-    function generateConsistentNumber(input) {
+    // Fungsi untuk menghasilkan angka prediksi unik dan konsisten
+    function generateConsistentPredictedNumber(numbers) {
+        // Hashing konsisten berdasarkan input
+        const hash = createHash(numbers);
+
+        const uniqueNumbers = Array.from(new Set(numbers)); // Hilangkan angka yang sama
+        const result = [];
+
+        // Ambil 5 angka unik dari input berdasarkan hash
+        while (result.length < 5 && uniqueNumbers.length > 0) {
+            const index = hash % uniqueNumbers.length;
+            const selectedNumber = uniqueNumbers.splice(index, 1)[0];
+            result.push(selectedNumber);
+        }
+
+        // Tambahkan angka paling jarang muncul ke hasil di posisi acak berdasarkan hash
+        const frequency = calculateFrequency(numbers);
+        const leastFrequentNumber = findLeastFrequentNumber(frequency);
+
+        if (leastFrequentNumber !== null) {
+            const randomPosition = hash % (result.length + 1);
+            result.splice(randomPosition, 0, leastFrequentNumber);
+        }
+
+        return result.join('');
+    }
+
+    // Fungsi untuk menghitung hash konsisten dari angka input
+    function createHash(numbers) {
         let hash = 0;
-        for (let i = 0; i < input.length; i++) {
-            const charCode = input.charCodeAt(i);
-            hash = (hash * 31 + charCode) % 1000000; // Menghasilkan angka 6 digit
+        for (let i = 0; i < numbers.length; i++) {
+            hash = (hash * 31 + numbers[i]) % 1000000007; // Prime modulus for large numbers
         }
-
-        let result = hash.toString().padStart(6, '0'); // Pastikan 6 digit
-
-        // Pastikan probabilitas angka double 20%
-        result = ensureLimitedDouble(result);
-
-        // Pastikan tidak ada triple
-        return ensureNoTriple(result);
+        return hash;
     }
 
-    // Fungsi untuk memastikan probabilitas angka double adalah 20%
-    function ensureLimitedDouble(number) {
-        const digits = number.split('');
-        for (let i = 0; i < digits.length - 1; i++) {
-            if (digits[i] === digits[i + 1] && Math.random() > 0.2) {
-                // Jika double ditemukan dan probabilitas lebih dari 20%, ubah angka berikutnya
-                digits[i + 1] = ((parseInt(digits[i + 1]) + 1) % 10).toString();
-            }
-        }
-        return digits.join('');
+    // Fungsi untuk menghitung frekuensi angka
+    function calculateFrequency(numbers) {
+        const frequency = {};
+        numbers.forEach(num => {
+            frequency[num] = (frequency[num] || 0) + 1;
+        });
+        return frequency;
     }
 
-    // Fungsi untuk memastikan tidak ada triple dalam hasil
-    function ensureNoTriple(number) {
-        const digits = number.split('');
-        for (let i = 0; i < digits.length - 2; i++) {
-            if (digits[i] === digits[i + 1] && digits[i] === digits[i + 2]) {
-                // Jika triple ditemukan, ubah angka ketiga menjadi angka yang tidak sama
-                const newDigit = ((parseInt(digits[i + 2]) + 1) % 10).toString();
-                digits[i + 2] = newDigit === digits[i] ? ((parseInt(newDigit) + 1) % 10).toString() : newDigit;
+    // Fungsi untuk menemukan angka yang jarang muncul
+    function findLeastFrequentNumber(frequency) {
+        let leastFrequent = null;
+        let minFrequency = Infinity;
+
+        for (const [number, count] of Object.entries(frequency)) {
+            if (count < minFrequency) {
+                minFrequency = count;
+                leastFrequent = parseInt(number);
             }
         }
-        return digits.join('');
+
+        return leastFrequent;
     }
 });
