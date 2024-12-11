@@ -47,35 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gabungkan semua angka menjadi array
         const allNumbers = inputValues.flatMap(num => num.split('').map(Number));
 
-        // Hasil prediksi konsisten tanpa angka ganda
-        const predictedNumber = generateConsistentPredictedNumber(allNumbers);
+        // Hasil prediksi konsisten tanpa angka ganda dan menambahkan satu angka tambahan
+        const predictedNumber = generateFinalPredictedNumber(allNumbers);
 
         // Tampilkan hasil
         resultElement.textContent = predictedNumber;
     });
 
-    // Fungsi untuk menghasilkan angka prediksi unik dan konsisten
-    function generateConsistentPredictedNumber(numbers) {
-        // Hashing konsisten berdasarkan input
-        const hash = createHash(numbers);
-
+    // Fungsi untuk menghasilkan angka prediksi dengan angka tambahan
+    function generateFinalPredictedNumber(numbers) {
         const uniqueNumbers = Array.from(new Set(numbers)); // Hilangkan angka yang sama
         const result = [];
 
-        // Ambil 5 angka unik dari input berdasarkan hash
+        // Hashing konsisten berdasarkan input
+        const hash = createHash(numbers);
+
+        // Ambil angka unik dari input
         while (result.length < 5 && uniqueNumbers.length > 0) {
             const index = hash % uniqueNumbers.length;
             const selectedNumber = uniqueNumbers.splice(index, 1)[0];
             result.push(selectedNumber);
         }
 
-        // Tambahkan angka paling jarang muncul ke hasil di posisi acak berdasarkan hash
-        const frequency = calculateFrequency(numbers);
-        const leastFrequentNumber = findLeastFrequentNumber(frequency);
+        // Pilih satu angka tambahan yang tidak ada di input
+        const allPossibleNumbers = Array.from({ length: 10 }, (_, i) => i); // [0, 1, 2, ..., 9]
+        const remainingNumbers = allPossibleNumbers.filter(num => !result.includes(num));
+        if (remainingNumbers.length > 0) {
+            const randomIndex = hash % remainingNumbers.length;
+            const additionalNumber = remainingNumbers[randomIndex];
 
-        if (leastFrequentNumber !== null) {
+            // Masukkan angka tambahan dalam posisi acak
             const randomPosition = hash % (result.length + 1);
-            result.splice(randomPosition, 0, leastFrequentNumber);
+            result.splice(randomPosition, 0, additionalNumber);
         }
 
         return result.join('');
@@ -88,29 +91,5 @@ document.addEventListener('DOMContentLoaded', () => {
             hash = (hash * 31 + numbers[i]) % 1000000007; // Prime modulus for large numbers
         }
         return hash;
-    }
-
-    // Fungsi untuk menghitung frekuensi angka
-    function calculateFrequency(numbers) {
-        const frequency = {};
-        numbers.forEach(num => {
-            frequency[num] = (frequency[num] || 0) + 1;
-        });
-        return frequency;
-    }
-
-    // Fungsi untuk menemukan angka yang jarang muncul
-    function findLeastFrequentNumber(frequency) {
-        let leastFrequent = null;
-        let minFrequency = Infinity;
-
-        for (const [number, count] of Object.entries(frequency)) {
-            if (count < minFrequency) {
-                minFrequency = count;
-                leastFrequent = parseInt(number);
-            }
-        }
-
-        return leastFrequent;
     }
 });
